@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <title>Order Details</title>
+</head>
+<body>
+
+<div id='main' class="flex w-full h-screen  bg-center bg-fixed bg-cover bg-opacity-60 " style="background-image: url(../assets/BG.png);">
+    <div class="flex flex-col w-1/6 pt-10 ">
+        <div class="flex hover:bg-sky-200 w-full justify-center  cursor-default hover:w-full" >
+            <a href="" > Place Order</a>
+        </div>
+        <div class="flex hover:bg-sky-200 w-full  justify-center cursor-default hover:w-full" >
+            <a href="" > Order Status</a>
+        </div>
+    </div>
+    <div class="flex flex-col w-5/6  ">
+        <div class="flex">
+              <form id='userForm' action="" class="" onsubmit="return false" >
+                <div class="mb-3 xl:w-96">
+                    <select 
+                      onchange="getPrice()"
+                      id='item'class="form-select appearance-none
+                      block
+                      w-full
+                      px-3
+                      py-1.5
+                      text-base
+                      font-normal
+                      text-gray-700
+                      bg-white bg-clip-padding bg-no-repeat
+                      border border-solid border-gray-300
+                      rounded
+                      transition
+                      ease-in-out
+                      m-0
+                      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                        <option selected>Open this select menu</option>
+                        <option value="Shirt">Shirt</option>
+                        <option value="Pant">Pant</option>
+                        <option value="Panjabi">Panjabi</option>
+                    </select>
+                  </div>
+            
+                <div class='p-2 '>
+                    <label for="name">Quantity:</label>
+                    <input id="quantity" class='w-auto h-auto p-2 border-2 rounded-lg focus:bordrer-0' type="number" placeholder="">
+                 </div>
+                 <div class="price" id='price'>
+
+                 </div>
+                 <div class='p-2 flex justify-center mt-4'>
+                   <button onClick='addToList()' class=" border-0 rounded-lg bg-blue-700 p-2">Add</button>
+                 </div>
+              </form>
+        </div>
+        
+        <div class="list ">
+            
+        </div>
+        <div><button onclick="placeOrder()" class="bg-owngreen">Place Order</button></div>
+    </div>
+</div>
+      
+  
+    
+</body>
+
+<script>
+    function getPrice(){
+    const price={ Shirt: 15,
+                  Pant: 10,
+                  Panjabi:10
+                }
+    let item = document.querySelector('#item').value
+        if (price.hasOwnProperty(item)) {
+        document.querySelector('.price').innerHTML = price[item];
+        }
+}
+
+let table=[]
+function addToList (){
+    let item = document.querySelector('#item').value;
+    let quantity=document.querySelector('#quantity').value
+    let price=document.querySelector('#price').value 
+    let list =document.querySelector('.list')
+    table.push({
+        'item':item,
+        'quantity':quantity,
+        'price':price
+
+    })
+   let htmlCode="";
+   table.forEach((td,ind)=>{
+    htmlCode += `<div class='flex mb-4 items-center'>
+        <p id="order_item" class='item p-2 text-grey-darkest'>${td.item}</p>
+        <p id="order_quantity"class='quantity p-2 text-grey-darkest'>${td.quantity}</p>
+        <p id="price" class='p-2 text-grey-darkest'>${td.price}</p>
+        <p onclick='edit(${ind})' class='p-2 ml-4 mr-2  '><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg></p>
+        <p onclick='deleteTodo(${ind})' class='p-2 ml-2 '><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg></p>
+                            
+    </div>`;
+    
+   })
+   list.innerHTML=htmlCode;
+}
+
+function placeOrder(){
+    let date = new Date();
+    let OPD = date.toISOString().slice(0, 10)
+
+    
+    let items =document.querySelectorAll("#order_item")
+   
+    let quantities =document.querySelectorAll("#order_quantity")
+    
+    let Order_items=[];
+    let Order_quantity=[];
+    items.forEach((item)=>{
+        let x=item.innerHTML
+        Order_items.push(x)
+     
+    })
+    quantities.forEach((quantity)=>{
+        let y=quantity.innerHTML
+        Order_quantity.push(y)
+     
+    })
+
+
+
+    let result = {};
+    Order_items.forEach((item, i) => result[item] = Order_quantity[i]);
+    UserID= JSON.parse(localStorage.getItem('UserID'))
+
+      let Orders =new Array();
+      Orders= JSON.parse(localStorage.getItem('Orders'))?JSON.parse(localStorage.getItem('Orders')):[]
+      
+      let order_id=Orders.length?Number(Orders[Orders.length-1].order_id)+1:1
+    
+      //'':,
+      Orders.push({ 'order_id':'00'+order_id,
+                    'order_items':result,
+                    "user_id":UserID,
+                    'Order_status':'Not Yet Confirmed',
+                    'Order_PD':OPD,
+                    'Order_EDD':'',
+                     })
+     
+    localStorage.setItem('Orders',JSON.stringify(Orders));
+
+     console.log('order placed');
+
+    
+}
+</script>
+</html>

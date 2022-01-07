@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Order Details</title>
+</head>
+<body onload="getOrderdetails()"> 
+<div id='main' class="flex w-full h-screen  bg-center bg-fixed bg-cover bg-opacity-60 " style="background-image: url(../assets/BG.png); ">
+    <div class=" flex flex-col w-1/6 p-2 ml-2">
+        <div class="flex flex-col text-white  bg-gray-900 opacity-90 -mt-2  ">
+            <div class="flex p-4 space-x-3 items-center border-b border-white border-dotted">
+                <span class =" h-10 w-10  " style=" background-image: url(../assets/logo-new.svg);" >
+                </span> 
+                <span class="text-base">Wash & Clean</span>
+            </div>
+            <div class="flex p-1 space-x-3 items-center border-b border-white border-dotted">
+                <span class =" h-10 w-10 ml-2  bg-center bg-cover rounded-full" style=" background-image: url(../assets/avatar-1.png);" >
+                </span> 
+                <Span class="text-base">Hi! </Span> <span id="user"></span>
+            </div>
+            <div class="flex  space-x-3 items-center">
+             <span class="hover:bg-gray-400 cursor-default  p-2 w-full hover:text-slate-800 hover:p-2"><i class="fab fa-first-order-alt"></i> Place Order</span> 
+            </div>
+            <div class="flex  space-x-3 items-center">
+                <span class="hover:bg-gray-400 cursor-default  p-2 w-full hover:text-slate-800 hover:p-2"><i class="fab fa-algolia"></i> Order Status</span> 
+            </div>
+        </div>
+
+        <div class="flex flex-col text-white  bg-gray-900 opacity-90 mt-2  ">
+            <div class="flex p-2 space-x-3 items-center justify-center border-b border-white border-dotted">
+               <h1>Orders to confirm</h1>
+            </div>
+            <div class="flex h-auto p-2  justify-center ">
+               <h1>You have no orders to confirm</h1>
+            </div>
+            
+        </div>
+        <div class="flex flex-col text-white  bg-gray-900 opacity-90 mt-2  ">
+            <div class="flex p-4 space-x-3 items-center border-b border-white border-dotted">
+               <h1>Orders to receive</h1>
+            </div>
+            <div class="flex p-1 space-x-3 items-center border-b border-white border-dotted">
+               
+            </div>
+            
+        </div>
+        <div class="flex flex-col text-white  bg-gray-900 opacity-90 mt-2  ">
+            <div class="flex p-4 space-x-3 items-center border-b border-white border-dotted">
+               <h1>Orders in process</h1>
+            </div>
+            <div class="flex p-1 space-x-3 items-center border-b border-white border-dotted">
+               
+            </div>
+            
+        </div>
+        <div class="flex flex-col text-white  bg-gray-900 opacity-90 mt-2  ">
+            <div class="flex p-4 space-x-3 items-center border-b border-white border-dotted">
+               <h1>Orders to deliver</h1>
+            </div>
+            <div class="flex p-1 space-x-3 items-center border-b border-white border-dotted">
+               
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="flex flex-col w-5/6 px-10">
+            <div class="flex justify-between  w-full p-2 mb-4 bg-gray-900 opacity-90 ">
+                <div class="flex space-x-7 ">
+                    <div class="flex p-1">
+                        <span class=" text-xl text-white"><i class="fas fa-igloo"></i></span>
+                    </div>
+                    <div class="flex p-1">
+                        <span class=" text-xl text-white"><i class="fas fa-file-signature"></i></span>
+                    </div>
+                    <div class="flex ">
+                            <span class="text-xl  bg-white border border-gray-900 rounded-l-md p-1" ><i class="fab fa-searchengin"></i></span>
+                            <input type ='text' placeholder="Search" class="  
+                            bg-white border border-gray-900 rounded-r-md  
+                           focus:outline-none focus:border-none focus:ring-gray-400 focus:ring-1 focus:ring-inset ">     
+                    </div>
+                </div>
+                <div class="flex space-x-7 ">
+                    <div class="flex">
+                        <span class=" text-xl text-white"><i class="fas fa-comments"></i></span>
+                    </div>
+                    <div class="flex">
+                        <span class=" text-xl text-white"><i class="far fa-bell"></i></span>
+                    </div>
+                    <div class="flex relative">
+                        <span class=" text-xl text-white" id='caret'><i class="fas fa-user-tie mr-2" ></i><i    class="fas fa-angle-down text-sm "></i></span>                  
+                    </div>
+                </div>               
+            </div>
+            <div id="show" class="absolute z-10 bg-white rounded-md p-4 right-10 mt-14 drop-shadow-xl transform -translate-y-96 main">
+                <ul class="flex flex-col space-y-4">
+                    <li class="flex justify-center border-b"> <Span>Hi! </Span><span> </span> <span id="user"></span></li>
+                    <li class="flex"> <span class=" text-lg mr-2 "><i class="fas fa-cogs"></i></span> <span>Settings</span></li>
+                    <li class="flex"> <span class=" text-lg mr-2 "><i class="far fa-user"></i></span> <span>Profile</span></li>
+                    <li class="flex"> <span class=" text-lg mr-2 "><i class="fas fa-sign-out-alt"></i></span> <span>Logout</span></li>
+                </ul>
+            </div>
+        <div class="flex flex-col">
+            <div class="flex justify-around bg-gray-900 bg-opacity-90  w-full p-2 text-white">
+                <div class="flex ">Order #</div>
+                <div class="flex"> Order Details</div>
+                <div class="flex">OPD</div>
+                <div class="flex">EDD</div>
+                <div class="flex">Status</div>
+               
+            </div>
+            <div class="border-b-2 border-indigo-500"></div>
+            <div id="demo" class="t_content"></div>
+        </div>     
+    </div>
+</div>
+      
+  
+    
+</body>
+
+<script>
+
+
+function getOrderdetails(){
+    UserID= JSON.parse(localStorage.getItem('UserID'))
+    Orders= JSON.parse(localStorage.getItem('Orders'))
+    Users=JSON.parse(localStorage.getItem('Users'))
+    t_content=document.querySelector(".t_content")
+    user_name=document.querySelector("#user")
+    Users.filter((user)=>{
+        if (UserID==user.email) {
+           UserName=user.name 
+           user_name.innerHTML=UserName
+        }
+    })
+    let content=""
+    Orders.filter((order,index)=>{
+
+        if(UserID==order.user_id){
+            let element=[]
+            for (let member in order.order_items) {
+                element.push(member+"->"+order.order_items[member])  
+            }
+            content+=
+            `<div class="flex justify-around bg-gray-900 bg-opacity-90 text-white p-2 border-bottom border-dotted border-indigo-500 ">
+                <div class="  grow-1">${order.order_id}</div>   
+                <div class="  grow-0">${element.map((el)=>el).join(',')}</div>       
+                <div class=" grow-0">${order.Order_PD}</div>
+                <div class=" grow-1">${order.Order_EDD}</div>
+                <div class="  grow-0">${order.Order_status}</div>
+            </div>` 
+        }
+    })
+    t_content.innerHTML=content
+}
+ 
+// function show(event){
+//     let show = document.querySelector("#show")
+//     event.stopPropagation();
+//     console.log('propagation stopped');
+//     show.classList.toggle("-translate-y-96");
+//     e.stopPropagation();
+
+// }
+
+document.querySelector('#caret').addEventListener('click', function(e){
+    console.log('div shown');
+  e.stopPropagation()
+  let show = document.querySelector("#show")
+  show.classList.toggle("-translate-y-96");
+  console.log('div shown');
+});
+
+
+document.querySelector('#main').addEventListener('click', function(e){
+  let show = document.querySelector("#show")
+  show.classList.add("-translate-y-96");
+});
+</script>
+</html>

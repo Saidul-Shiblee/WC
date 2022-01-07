@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    <title>Wash & Clean </title>
+</head>
+<body>
+    <div class="flex items-center justify-center h-screen bg-cover" style="background-image: url(../assets/login.jpg)">
+        <form id='userForm' action="" class="bg-gray-600 border-0 rounded-lg p-20 shadow-2xl bg-opacity-90" onsubmit="return false" >
+            <div class="flex justify-center">
+                <h1 class=" text-white text-3xl font-bold">Member Registration</h1>
+            </div>
+            <div class='flex  p-2 mt-6 group justify-center'>
+                <span class="bg-white w-auto h-10 p-2 "><i class="fas fa-user "></i></span>
+                <input id="name" class='w-full h-10 border-0 p-2  focus:outline-none group-focus:animate-Myping ' type="text" placeholder="User Name">   
+             </div>
+            <div class='flex  p-2 mt-6 justify-center'>
+                <span class="bg-white w-auto h-10 p-2 "><i class="fas fa-user "></i></span>
+                <input id="email" class='w-full h-10 border-0 p-2  focus:outline-none focus:ring-2 focus:ring-blue-800 group-focus:' type="email" placeholder="E-mail">   
+             </div>
+             <div class='flex  p-2 mt-6 justify-center'>
+                <span class="bg-white w-auto h-10 p-2  "><i class="fas fa-user "></i></span>
+                <input id="password" class='w-full h-10 border-0 p-2  focus:outline-none focus:ring-2 focus:ring-blue-800 group-focus:' type="password" placeholder="password">   
+             </div>
+             <div class='p-2 flex justify-center mt-4'>
+               <button onClick='createUser()' class=" w-full h-auto p-2  bg-owngreen ">Sign Up</button>
+             </div>
+        </form>
+        
+    </div>
+
+
+
+    <script type="text/javascript"> 
+        function createUser(){
+            const userName=document.querySelector('#name').value
+            const eMail=document.querySelector('#email').value
+            const password=document.querySelector('#password').value
+            const userForm= document.querySelector('#userForm')
+            if (!userName||!eMail||!password) {
+                alert("Please fill up all the field")
+            }else{
+            let Users =new Array();
+            Users= JSON.parse(localStorage.getItem('Users'))?JSON.parse(localStorage.getItem('Users')):[]
+            
+            if (Users.length !== 0) {
+                Users.some((user)=>{
+                if (user.email==eMail ) {
+                console.log("User is already registered")
+                
+            }else{
+                Users.push({'name':userName,
+                      'email':eMail,
+                      'password':password,
+                      'role':''
+                     })
+            localStorage.setItem('Users',JSON.stringify(Users));
+            userForm.reset();  
+            alert('Sign Up successfull') 
+            window.location.href = "signin.html"; 
+
+            }
+        
+            })} 
+            else{
+                Users.push({'name':userName,
+                      'email':eMail,
+                      'password':password,
+                      'role':''
+                     })
+            localStorage.setItem('Users',JSON.stringify(Users));
+            userForm.reset();  
+            alert('Sign Up successfull') 
+            window.location.href = "signin.html"; 
+            }  
+        }
+    }
+
+       
+    </script>
+</body>
+
+</html>
