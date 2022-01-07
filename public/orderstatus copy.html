@@ -119,44 +119,74 @@
     </div>
 
 
-    <div id="order_form" class="modal w-auto ease-linear transition-all  duration-300 flex flex-col justify-around absolute update bg-white border-0 rounded-lg  drop-shadow-2xl transform -translate-x-1/2 -translate-y-96 left-2/4 mt-8">
-       <div class="flex justify-center items-center border-b border-gray-700  p-2"><h1>Hi ${} Wanna Place an Order!</h1></div>
-        <form id='userForm' action="" class="p-2" onsubmit="return false" >
-            <div class=" w-auto flex justify-between ">
-                <label class="py-1.5 px-3" for="item">Select Item: </label>
-                <select 
-                  onchange="getPrice()"
-                  id='item'class="form-select appearance-none
-                  w-auto
-                  px-3
-                  py-1.5
-                  text-base
-                  font-normal
-                  text-gray-700
-                  bg-white bg-clip-padding bg-no-repeat
-                  border border-solid border-gray-300
-                  rounded
-                  transition
-                  ease-in-out
-                  m-0
-                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
-                    <option value="Shirt">Shirt</option>
-                    <option value="Pant">Pant</option>
-                    <option value="Panjabi">Panjabi</option>
-                </select>
-                <label for="name" class="py-1.5 px-3">Quantity:</label>
-                <input id="quantity" class='w-auto h-auto py-1.5 px-3 border rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' type="number" placeholder="">
-              </div>
-        
-           
+    <div id="order_form" class="modal w-auto  transition-all ease-linear  duration-700 flex flex-col justify-around absolute update bg-white border-0 rounded-lg  drop-shadow-2xl left-1/2 top-1/2 transform invisible -translate-x-1/2 -translate-y-1/2">
+       <div class="flex justify-center items-center border-b border-gray-700  p-2">
+           <h1>Hi ${} Wanna Place an Order!</h1>
+        </div>
+            <div class=" w-auto flex flex-col  ">
+                  <div class="flex justify-between">
+                        <div class="">
+                            <label class="py-1.5 px-3" for="item">Select Item: </label>
+                            <select 
+                            onchange="getPrice()"
+                            id='item'class="form-select appearance-none
+                            w-auto
+                            px-3
+                            py-1.5
+                            text-base
+                            font-normal
+                            text-gray-700
+                            bg-white bg-clip-padding bg-no-repeat
+                            border border-solid border-gray-300
+                            rounded
+                            transition
+                            ease-in-out
+                            m-0
+                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                <option value="Shirt">Shirt</option>
+                                <option value="Pant">Pant</option>
+                                <option value="Panjabi">Panjabi</option>
+                            </select>
+                        </div>
+                        <div class="flex">
+                            <label for="name" class="py-1.5 px-3">Quantity:</label>
+                            <input id="quantity" class='w-auto h-auto py-1.5 px-3 border rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' type="number" placeholder="">
+                        </div>  
+                 </div> 
+                 <div class="flex justify-between">
+                    <div class="flex">
+                        <label class="py-1.5 px-3" for="item">Select Item: </label>
+                        <select 
+                        onchange="getPrice()"
+                        id='item'class="form-select appearance-none
+                        w-auto
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding bg-no-repeat
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        m-0
+                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="Shirt">Shirt</option>
+                            <option value="Pant">Pant</option>
+                            <option value="Panjabi">Panjabi</option>
+                        </select>
+                    </div>  
+                    <div class='p-2 flex justify-center mt-4'>
+                        <button onClick='addToList()' class=" border-0 rounded-lg bg-blue-700 ">Add</button>
+                      </div>
+                 </div> 
+            </div>
              <div class="price" id='price'>
-
              </div>
-             <div class='p-2 flex justify-center mt-4'>
-               <button onClick='addToList()' class=" border-0 rounded-lg bg-blue-700 p-2">Add</button>
-             </div>
-          </form>
+             
     </div>
 
 
@@ -216,7 +246,9 @@ document.querySelector('#place_order').addEventListener('click', function(e){
     console.log('div shown');
   e.stopPropagation()
   let order_form = document.querySelector("#order_form")
-  order_form.classList.toggle("-translate-y-96");
+  order_form.classList.remove("invisible")
+  order_form.classList.add("visible");
+
   console.log('div shown');
 });
 
