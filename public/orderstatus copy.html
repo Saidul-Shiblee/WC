@@ -8,8 +8,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <title>Order Details</title>
 </head>
-<body onload="getOrderdetails()"> 
-<div id='main' class="flex relative w-full h-screen  bg-center bg-fixed bg-cover bg-opacity-60 " style="background-image: url(../assets/BG.png); ">
+<body onload="getOrderdetails()" class=" bg-fixed bg-cover bg-opacity-60"  style="background-image: url(../assets/BG.png); "> 
+<div id='main' class="flex relative w-full h-screen   ">
     <div class=" flex flex-col w-1/6 p-2 ml-2">
         <div class="flex flex-col text-white  bg-gray-900 opacity-90 -mt-2  ">
             <div class="flex p-4 space-x-3 items-center border-b border-white border-dotted">
@@ -105,9 +105,9 @@
                 </ul>
             </div>
         <div class="flex flex-col">
-            <div class="flex justify-around bg-gray-900 bg-opacity-90  w-full p-2 text-white">
-                <div class="flex ">Order #</div>
-                <div class="flex"> Order Details</div>
+            <div class="flex justify-between bg-gray-900 bg-opacity-90  w-full p-2 text-white">
+                <div class="flex items-center">Order #</div>
+                <div class="flex items-center justify-around"> Order Details</div>
                 <div class="flex">OPD</div>
                 <div class="flex">EDD</div>
                 <div class="flex">Status</div>
@@ -115,84 +115,73 @@
             </div>
             <div class="border-b-2 border-indigo-500"></div>
             <div id="demo" class="t_content"></div>
-        </div>     
+        </div>  
+        
+       
+        
     </div>
 
-
-    <div id="order_form" class="modal w-auto  transition-all ease-linear  duration-700 flex flex-col justify-around absolute update bg-white border-0 rounded-lg  drop-shadow-2xl left-1/2 top-1/2 transform invisible -translate-x-1/2 -translate-y-1/2">
-       <div class="flex justify-center items-center border-b border-gray-700  p-2">
+    
+    <div id="order_form" class="modal transition-all ease-linear  duration-700  flex-col w-3/4 h-auto  absolute update bg-white border-0 rounded-lg  drop-shadow-2xl left-1/2  transform invisible -translate-x-1/2 mt-16 ml-28">
+        <div class="flex justify-center items-center border-b border-gray-700  p-2">
            <h1>Hi ${} Wanna Place an Order!</h1>
         </div>
-            <div class=" w-auto flex flex-col  ">
-                  <div class="flex justify-between">
-                        <div class="">
-                            <label class="py-1.5 px-3" for="item">Select Item: </label>
-                            <select 
-                            onchange="getPrice()"
-                            id='item'class="form-select appearance-none
-                            w-auto
-                            px-3
-                            py-1.5
-                            text-base
-                            font-normal
-                            text-gray-700
-                            bg-white bg-clip-padding bg-no-repeat
-                            border border-solid border-gray-300
-                            rounded
-                            transition
-                            ease-in-out
-                            m-0
-                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="Shirt">Shirt</option>
-                                <option value="Pant">Pant</option>
-                                <option value="Panjabi">Panjabi</option>
-                            </select>
-                        </div>
-                        <div class="flex">
-                            <label for="name" class="py-1.5 px-3">Quantity:</label>
-                            <input id="quantity" class='w-auto h-auto py-1.5 px-3 border rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' type="number" placeholder="">
-                        </div>  
-                 </div> 
-                 <div class="flex justify-between">
-                    <div class="flex">
-                        <label class="py-1.5 px-3" for="item">Select Item: </label>
-                        <select 
-                        onchange="getPrice()"
-                        id='item'class="form-select appearance-none
-                        w-auto
-                        px-3
-                        py-1.5
-                        text-base
-                        font-normal
-                        text-gray-700
-                        bg-white bg-clip-padding bg-no-repeat
-                        border border-solid border-gray-300
-                        rounded
-                        transition
-                        ease-in-out
-                        m-0
-                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="Shirt">Shirt</option>
-                            <option value="Pant">Pant</option>
-                            <option value="Panjabi">Panjabi</option>
-                        </select>
-                    </div>  
-                    <div class='p-2 flex justify-center mt-4'>
-                        <button onClick='addToList()' class=" border-0 rounded-lg bg-blue-700 ">Add</button>
-                      </div>
-                 </div> 
-            </div>
-             <div class="price" id='price'>
-             </div>
-             
+       
+        <div class="flex w-auto justify-between p-4 ">
+                <div class="flex items-center">
+                   
+                   <label class="py-1.5 px-3" for="item">Select Item: </label>
+                    
+                    <select 
+                    onchange="getPrice()"
+                    id='item'class="form-select appearance-none w-50 px-3 py-1.5 text-base font-normal
+                    text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300
+                    rounded  transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 
+                    focus:outline-none" aria-label="Default select example">
+                        <option selected>Please Select One</option>
+                        <option value="Shirt">Shirt</option>
+                        <option value="Pant">Pant</option>
+                        <option value="Panjabi">Panjabi</option>
+                    </select>
+                </div>
+                <div class="flex items-center">
+                    <label for="name" class="py-1.5 px-3">Quantity:</label>
+                    <input id="quantity" class='w-20 h-auto py-1.5 px-3 border rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none' type="number" placeholder="">
+                </div>  
+        
+                <div class="flex items-center">
+                    <label class="py-1.5 px-3" for="item">Select Operation: </label>
+                    <select 
+                    onchange="getPrice()"
+                    
+                    id='operation'class="form-select appearance-none w-50 px-3 py-1.5 text-base font-normal
+                    text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300
+                    rounded  transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 
+                    focus:outline-none" aria-label="Default select example">
+                        <option selected>Please Select One</option>
+                        <option value="Wash">Wash</option>
+                        <option value="Iron">Iron</option>
+                    </select>
+                </div>
+                <div class="flex py-1.5 px-3 items-center">
+                    <button class="bg-green-400 p-1 border rounded-md drop-shadow-md " onclick="addToList()">Add to Cart</button>  
+                </div>  
+        </div>  
+        
+         <div class="price" id='price'>
+         </div>
+
+         <div class="list ">
+            
+        </div>
+       
     </div>
 
 
 
 </div>
-      
+
+
   
     
 </body>
@@ -221,12 +210,12 @@ function getOrderdetails(){
                 element.push(member+"->"+order.order_items[member])  
             }
             content+=
-            `<div class="flex justify-around bg-gray-900 bg-opacity-90 text-white p-2 border-bottom border-dotted border-indigo-500 ">
-                <div class="  grow-1">${order.order_id}</div>   
-                <div class="  grow-0">${element.map((el)=>el).join(',')}</div>       
-                <div class=" grow-0">${order.Order_PD}</div>
-                <div class=" grow-1">${order.Order_EDD}</div>
-                <div class="  grow-0">${order.Order_status}</div>
+            `<div class="flex  justify-between items-center bg-gray-900 bg-opacity-90 text-white p-2 border-bottom border-dotted border-indigo-500 ">
+                <div class="w-1/12">${order.order_id}</div>   
+                <div class="w-2/5 justify-around shrink">${element.map((el)=>el).join(' , ')}</div>       
+                <div class="w-2/12">${order.Order_PD}</div>
+                <div class="w-2/12">10.12.0000</div>
+                <div class="w-1/5">${order.Order_status}</div>
             </div>` 
         }
     })
@@ -235,21 +224,21 @@ function getOrderdetails(){
  
 
 document.querySelector('#caret').addEventListener('click', function(e){
-    console.log('div shown');
+ 
   e.stopPropagation()
   let show = document.querySelector("#show")
   show.classList.toggle("-translate-y-96");
-  console.log('div shown');
+ 
 });
 
 document.querySelector('#place_order').addEventListener('click', function(e){
-    console.log('div shown');
+ 
   e.stopPropagation()
   let order_form = document.querySelector("#order_form")
   order_form.classList.remove("invisible")
   order_form.classList.add("visible");
 
-  console.log('div shown');
+
 });
 
 
@@ -257,5 +246,78 @@ document.querySelector('#main').addEventListener('click', function(e){
   let show = document.querySelector("#show")
   show.classList.add("-translate-y-96");
 });
+
+function getPrice(){
+    const price={ Shirt_Wash: 30,
+                  Pant_Wash: 31,
+                  Panjabi_Wash:32,
+                  Shirt_Iron:15,
+                  Pant_Iron:15,
+                  Panjabi_Iron:15
+                }
+    if ((document.querySelector('#item').value)){
+        document.querySelector('#operation').removeAttribute('disabled')
+    }else{
+        document.querySelector('#operation').setAttribute("disabled", "")
+    }
+    if (document.querySelector('#item').value!=='' && document.querySelector('#operation').value !=='') {
+        let item = document.querySelector('#item').value+"_"+document.querySelector('#operation').value
+        if (price.hasOwnProperty(item)) {
+        document.querySelector('.price').innerHTML = price[item];
+        }
+     }      
+   }
+
+let table=[]
+function addToList (){
+    let item = document.querySelector('#item').value+"_"+document.querySelector('#operation').value;
+    let quantity=document.querySelector('#quantity').value
+    let price=document.querySelector('#price').value
+    let list =document.querySelector('.list')
+    if (table.length==0) {
+        table.push({
+        'item':item,
+        'quantity':quantity,
+        'price':price
+    })  ;
+    console.log('inserted');  
+    }
+    else {
+        if (table.indexOf(item)!==-1) {
+            alert("Already In The List")
+            console.log(item);
+        }
+        else{
+            table.push({
+              'item':item,
+            'quantity':quantity,
+          'price':price
+    })
+
+        }
+    }
+   let htmlCode="";
+   table.forEach((td,ind)=>{
+    htmlCode += `<div class='flex mb-4 items-center  p-2'>
+        <div><p id="order_item" class='item p-2 text-grey-darkest'>${td.item}</p></div>
+        <div><p id="order_quantity"class='quantity p-2 text-grey-darkest'>${td.quantity}</p></div>
+        <div><p id="price" class='p-2 text-grey-darkest'>${td.price}</p></div>
+        <div><p onclick='edit(${ind})' class='p-2  '><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg></p>
+        <p onclick='deleteTodo(${ind})' class='p-2 '><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg></p></div>
+                            
+    </div>`;
+    
+   })
+   list.innerHTML=htmlCode;
+}
+
 </script>
 </html>

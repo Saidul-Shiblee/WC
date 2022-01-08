@@ -39,10 +39,35 @@
                       ease-in-out
                       m-0
                       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
+                        <option selected value="">Please Select One </option>
                         <option value="Shirt">Shirt</option>
                         <option value="Pant">Pant</option>
                         <option value="Panjabi">Panjabi</option>
+                    </select>
+                  </div>
+                  <div class="mb-3 xl:w-96">
+                    <select 
+                      onchange="getPrice()"
+                      disabled
+                     
+                      id='operation'class="form-select appearance-none
+                      block
+                      w-full
+                      px-3
+                      py-1.5
+                      text-base
+                      font-normal
+                      text-gray-700
+                      bg-white bg-clip-padding bg-no-repeat
+                      border border-solid border-gray-300
+                      rounded
+                      transition
+                      ease-in-out
+                      m-0
+                      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                        <option selected value="" >Please Select One </option>
+                        <option value="Wash">Wash</option>
+                        <option value="Iron">Iron</option>
                     </select>
                   </div>
             
@@ -71,16 +96,28 @@
 </body>
 
 <script>
+
+
     function getPrice(){
-    const price={ Shirt: 15,
-                  Pant: 10,
-                  Panjabi:10
+    const price={ Shirt_Wash: 30,
+                  Pant_Wash: 31,
+                  Panjabi_Wash:32,
+                  Shirt_Iron:15,
+                  Pant_Iron:15,
+                  Panjabi_Iron:15
                 }
-    let item = document.querySelector('#item').value
+    if ((document.querySelector('#item').value)){
+        document.querySelector('#operation').removeAttribute('disabled')
+    }else{
+        document.querySelector('#operation').setAttribute("disabled", "")
+    }
+    if (document.querySelector('#item').value!=='' && document.querySelector('#operation').value !=='') {
+        let item = document.querySelector('#item').value+"_"+document.querySelector('#operation').value
         if (price.hasOwnProperty(item)) {
         document.querySelector('.price').innerHTML = price[item];
         }
-}
+     }      
+   }
 
 let table=[]
 function addToList (){
@@ -88,17 +125,31 @@ function addToList (){
     let quantity=document.querySelector('#quantity').value
     let price=document.querySelector('#price').value 
     let list =document.querySelector('.list')
-    table.push({
+
+    if (table.length==0) {
+        table.push({
         'item':item,
         'quantity':quantity,
         'price':price
-
+    })    
+    }else{
+        table.forEach((el) => {
+        if (el.item==item) {
+           alert('already in the list');
+        }else{
+            table.push({
+        'item':item,
+        'quantity':quantity,
+        'price':price
     })
+        }
+    })
+    }
    let htmlCode="";
    table.forEach((td,ind)=>{
     htmlCode += `<div class='flex mb-4 items-center'>
         <p id="order_item" class='item p-2 text-grey-darkest'>${td.item}</p>
-        <p id="order_quantity"class='quantity p-2 text-grey-darkest'>${td.quantity}</p>
+        <input id="order_quantity"class='quantity p-2 text-grey-darkest' type="number" value="${td.quantity}">
         <p id="price" class='p-2 text-grey-darkest'>${td.price}</p>
         <p onclick='edit(${ind})' class='p-2 ml-4 mr-2  '><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -133,18 +184,20 @@ function placeOrder(){
         Order_items.push(x)
      
     })
+
+    console.log(Order_items);
     quantities.forEach((quantity)=>{
         let y=quantity.innerHTML
         Order_quantity.push(y)
      
     })
 
-
+    console.log(Order_quantity);
 
     let result = {};
     Order_items.forEach((item, i) => result[item] = Order_quantity[i]);
     UserID= JSON.parse(localStorage.getItem('UserID'))
-
+    console.log(result);
       let Orders =new Array();
       Orders= JSON.parse(localStorage.getItem('Orders'))?JSON.parse(localStorage.getItem('Orders')):[]
       
@@ -159,7 +212,7 @@ function placeOrder(){
                     'Order_EDD':'',
                      })
      
-    localStorage.setItem('Orders',JSON.stringify(Orders));
+    // localStorage.setItem('Orders',JSON.stringify(Orders));
 
      console.log('order placed');
 

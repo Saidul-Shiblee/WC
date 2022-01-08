@@ -75,3 +75,8 @@
    outline-offset: 12px;
 }
 } */
+@layer utilities {
+  .w-own{
+   width: 22.91%;
+  }
+}
