@@ -169,6 +169,7 @@
         </div>  
         
          <div class="price" id='price'>
+
          </div>
 
          <div class="list ">
@@ -248,12 +249,12 @@ document.querySelector('#main').addEventListener('click', function(e){
 });
 
 function getPrice(){
-    const price={ Shirt_Wash: 30,
-                  Pant_Wash: 31,
-                  Panjabi_Wash:32,
-                  Shirt_Iron:15,
-                  Pant_Iron:15,
-                  Panjabi_Iron:15
+    const price={ 'Shirt_Wash': 30,
+                  'Pant_Wash': 31,
+                  'Panjabi_Wash':32,
+                  'Shirt_Iron':15,
+                  'Pant_Iron':15,
+                  'Panjabi_Iron':15
                 }
     if ((document.querySelector('#item').value)){
         document.querySelector('#operation').removeAttribute('disabled')
@@ -272,52 +273,74 @@ let table=[]
 function addToList (){
     let item = document.querySelector('#item').value+"_"+document.querySelector('#operation').value;
     let quantity=document.querySelector('#quantity').value
-    let price=document.querySelector('#price').value
+    let price=document.querySelector('#price').innerHTML
     let list =document.querySelector('.list')
+    console.log(item);
+    console.log(table);
     if (table.length==0) {
+        table.push({
+            'item':item,
+             'quantity':quantity,
+             'price':price*quantity})
+        
+    }else{
+     if (table.some(el=>el.item==item)) {
+         alert("already in the list")
+     }else{
         table.push({
         'item':item,
         'quantity':quantity,
-        'price':price
-    })  ;
-    console.log('inserted');  
-    }
-    else {
-        if (table.indexOf(item)!==-1) {
-            alert("Already In The List")
-            console.log(item);
-        }
-        else{
-            table.push({
-              'item':item,
-            'quantity':quantity,
-          'price':price
-    })
+        'price':price*quantity})
+     }
 
-        }
-    }
+}
    let htmlCode="";
+   table.forEach((td,id)=>{
+    htmlCode += `<div class='flex mb-4 items-center  p-2'>
+        <div><p id="order_item" class='item p-2 text-grey-darkest'>${td.item}</p></div>
+        <div><input id="order_quantity"class='quantity p-2 text-grey-darkest' value="${td.quantity}" type="number"></div>
+        <div><p id="price" class='p-2 text-grey-darkest'>${td.price}</p></div>
+        <div> <p onclick='deleteItem(${id})' class='p-2 '><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+        </svg></p></div>
+                          
+    </div>`;
+    
+   })
+   htmlCode+=table.length!=0 ?`<button id="closeModal" >Close</button>`:`<div></div>` 
+   list.innerHTML=htmlCode;
+}
+
+function deleteItem(id) {
+    let list =document.querySelector('.list')
+    table=table.splice(0,id)
+
+  let htmlCode="";
    table.forEach((td,ind)=>{
     htmlCode += `<div class='flex mb-4 items-center  p-2'>
         <div><p id="order_item" class='item p-2 text-grey-darkest'>${td.item}</p></div>
-        <div><p id="order_quantity"class='quantity p-2 text-grey-darkest'>${td.quantity}</p></div>
+        <div><input id="order_quantity"class='quantity p-2 text-grey-darkest' value="${td.quantity}" type="number"></div>
         <div><p id="price" class='p-2 text-grey-darkest'>${td.price}</p></div>
-        <div><p onclick='edit(${ind})' class='p-2  '><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                            </svg></p>
-        <p onclick='deleteTodo(${ind})' class='p-2 '><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                            </svg></p></div>
+        <div> <p onclick='deleteItem(${ind})' class='p-2 '><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+        </svg></p></div>
                             
     </div>`;
     
    })
    list.innerHTML=htmlCode;
 }
+
+document.querySelector('#closeModal').addEventListener('click', function(){
+console.log('closed');
+});
+
+
+
 
 </script>
 </html>
