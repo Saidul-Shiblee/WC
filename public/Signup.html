@@ -11,26 +11,48 @@
 </head>
 <body>
     <div class="flex items-center justify-center h-screen bg-cover" style="background-image: url(../assets/login.jpg)">
-        <form id='userForm' action="" class="bg-gray-600 border-0 rounded-lg p-20 shadow-2xl bg-opacity-90" onsubmit="return false" >
+        <form id='userForm' action="" class="bg-gray-600 border-0 rounded-lg py-6 px-10 shadow-2xl bg-opacity-90 " onsubmit="return false" >
+          <div class="flex flex-col items-center justify-center">  
             <div class="flex justify-center">
                 <h1 class=" text-white text-3xl font-bold">Member Registration</h1>
             </div>
-            <div class='flex  p-2 mt-6 group justify-center'>
-                <span class="bg-white w-auto h-10 p-2 "><i class="fas fa-user "></i></span>
-                <input id="name" class='w-full h-10 border-0 p-2  focus:outline-none group-focus:animate-Myping ' type="text" placeholder="User Name">   
+
+             <div class='flex relative  h-10 mt-6 justify-center'>
+                <input id="name" class='w-full h-10 border-0 pl-8 pr-3 focus:ring-blue-800 focus:outline-none focus:ring-2 '  type="text" placeholder="User Name" required="required" onchange="abc()">   
+                <div class="bg-white w-auto h-10  px-2 absolute left-0 inset-y-0 flex justify-center items-center"><i class="fas fa-user "></i></div>
              </div>
-            <div class='flex  p-2 mt-6 justify-center'>
-                <span class="bg-white w-auto h-10 p-2 "><i class="fas fa-user "></i></span>
-                <input id="email" class='w-full h-10 border-0 p-2  focus:outline-none focus:ring-2 focus:ring-blue-800 group-focus:' type="email" placeholder="E-mail">   
+
+             <div class='flex relative  h-10 mt-6 justify-center'>
+                <input id="email" class='w-full h-10 border-0 pl-8 pr-3 focus:ring-blue-800 focus:outline-none focus:ring-2 '  type="email" placeholder="E-mail" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])? " required="required">   
+                <div class="bg-white w-auto h-10  px-2 absolute left-0 inset-y-0 flex justify-center items-center"><i class="fas fa-envelope"></i></div>
              </div>
-             <div class='flex  p-2 mt-6 justify-center'>
-                <span class="bg-white w-auto h-10 p-2  "><i class="fas fa-user "></i></span>
-                <input id="password" class='w-full h-10 border-0 p-2  focus:outline-none focus:ring-2 focus:ring-blue-800 group-focus:' type="password" placeholder="password">   
+
+             <div class='flex relative  h-10 mt-6 justify-center'>
+                <input id="mobile" class='w-full h-10 border-0 pl-8 pr-3 focus:ring-blue-800 focus:outline-none focus:ring-2 '  type="text" placeholder="Mobile No" required="required">   
+                <div class="bg-white w-auto h-10  px-2 absolute left-0 inset-y-0 flex justify-center items-center"><i class="fas fa-mobile-alt"></i></div>
              </div>
-             <div class='p-2 flex justify-center mt-4'>
+
+             <div class='flex relative  h-10 mt-6 justify-center'>
+                <input id="password" class='w-full h-10 border-0 pl-8 pr-3 focus:ring-blue-800 focus:outline-none focus:ring-2 ' type="Password" placeholder="Password" required="required" >   
+                <div class="bg-white w-auto h-10  px-2 absolute left-0 inset-y-0 flex justify-center items-center"><i class="fas fa-lock "></i></div>
+             </div>
+             <div class='flex relative  h-10 mt-6 justify-center'>
+                <input id="re_password" class='w-full h-10 border-0 pl-8 pr-3 focus:ring-blue-800 focus:outline-none focus:ring-2 ' placeholder="Re Enter Password" type="Password" required="required">   
+                <div class="bg-white w-auto h-10  px-2 absolute left-0 inset-y-0 flex justify-center items-center"><i class="fas fa-lock "></i></div>
+             </div>
+             <div class=' flex justify-center mt-6'>
                <button onClick='createUser()' class=" w-full h-auto p-2  bg-owngreen ">Sign Up</button>
              </div>
+
+             <div class ="p-2 flex justify-center mt-6">
+                 <p class=" text-white">Already registered?, please click <a class="text-blue-900 underline" href="Signin.html"> here </a>  </p> 
+             </div>
+            </div> 
         </form>
+         <div>
+             <p>Error Log</p>
+             <p id='error'></p>
+         </div>
         
     </div>
 
@@ -40,11 +62,13 @@
         function createUser(){
             const userName=document.querySelector('#name').value
             const eMail=document.querySelector('#email').value
+            const mobile=document.querySelector('#mobile').value
             const password=document.querySelector('#password').value
+            const rePassword=document.querySelector('#password').value
             const userForm= document.querySelector('#userForm')
             if (!userName||!eMail||!password) {
                 alert("Please fill up all the field")
-            }else{
+            }else {
             let Users =new Array();
             Users= JSON.parse(localStorage.getItem('Users'))?JSON.parse(localStorage.getItem('Users')):[]
             
@@ -81,6 +105,35 @@
         }
     }
 
+    // function formValidation(userName,eMail,mobile,password,rePassword){
+        // let error=[
+        //     {
+        //         "userName":"",
+        //         "email":"",
+        //         "mobile":"",
+        //         "password":"",
+        //         "rePassword":""
+        //     }
+        // ];
+    //     if(){}
+    // }
+    let a=
+    {
+                "userName":"",
+                "email":"",
+                "mobile":"",
+                "password":"",
+                "rePassword":""
+            }
+   
+        function abc(){
+             let userName=document.querySelector('#name').value
+             if(!userName.match(/^[0-9a-z]+$/i)){
+                a["userName"] = "value";
+                document.querySelector('#error').innerHTML=a.userName
+                console.log(a);
+             }
+        }
        
     </script>
 </body>

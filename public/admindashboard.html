@@ -40,7 +40,7 @@
             <div id="demo" class="t_content"></div>
         </div>
         
-        <div class="modal ease-linear transition-all  duration-300 flex justify-around absolute update bg-white border-0 rounded-lg p-20 drop-shadow-2xl transform -translate-x-1/2 -translate-y-96 left-2/4 ">
+        <div class="modal fixed  ease-linear transition-all  duration-300 flex justify-around  update bg-white border-0 rounded-lg p-20 drop-shadow-2xl transform -translate-x-1/2 -translate-y-96 left-2/4 ">
             <div><label for="">EDD</label>
              <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  w-auto p-2.5" type="date" id= 'edd' value=""> 
             </div>
@@ -67,7 +67,9 @@
 
 
 function getOrderdetails(){
-    UserID= JSON.parse(localStorage.getItem('UserID'))
+
+    UserID= JSON.parse(localStorage.getItem('UserID'));
+    if(!UserID){window.location.href = "Signin-admin.html"}
     Orders= JSON.parse(localStorage.getItem('Orders'))
     Users=JSON.parse(localStorage.getItem('Users'))
     t_content=document.querySelector(".t_content")

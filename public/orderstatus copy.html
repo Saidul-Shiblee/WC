@@ -123,7 +123,7 @@
     </div>
 
     
-    <div id="order_form" class="modal   flex-col w-3/4 h-auto  absolute update bg-white border-0 rounded-lg  drop-shadow-2xl left-1/2  transform invisible -translate-x-1/2 mt-16 ml-28">
+    <div id="order_form" class="modal   flex-col w-3/4 h-auto  fixed update bg-white border-0 rounded-lg  drop-shadow-2xl left-1/2  transform invisible -translate-x-1/2 mt-16 ml-28">
         <div class="flex justify-between items-center border-b border-gray-700  p-2">
            <h1>Hi  <span id="user"></span> Wanna Place an Order!</h1><span class="closeModal cursor-default">X</span>
         </div>
@@ -193,6 +193,7 @@
 //Function To get Order Details which will fire onload 
 function getOrderdetails(){
     UserID= JSON.parse(localStorage.getItem('UserID'))
+    if(!UserID){window.location.href = "Signin.html"}
     Orders= JSON.parse(localStorage.getItem('Orders'))
     Users=JSON.parse(localStorage.getItem('Users'))
     t_content=document.querySelector(".t_content")
