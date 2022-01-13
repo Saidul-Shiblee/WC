@@ -1387,6 +1387,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(30 58 138 / var(--tw-text-opacity));
 }
 
+.text-red-300 {
+  --tw-text-opacity: 1;
+  color: rgb(252 165 165 / var(--tw-text-opacity));
+}
+
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -1733,25 +1738,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .group:hover .group-hover\:ring-offset-owngreen {
   --tw-ring-offset-color: #96c346;
-}
-
-@-webkit-keyframes ping {
-  75%, 100% {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-@keyframes ping {
-  75%, 100% {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-.group:focus .group-focus\:animate-Myping {
-  -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1);
-          animation: ping 1s cubic-bezier(0, 0, 0.2, 1);
 }
 
 @media (min-width: 1280px) {
