@@ -20,14 +20,14 @@ module.exports = {
   },
   variants: {
     extend: {
-      scale:["group-hover","active"],
-      ringOffsetWidth:["group-hover","active",'focus'],
-      ringWidth: ["group-hover","active",'focus'],
-      ringColor:["group-hover","active",'focus'],
-      ringOffsetColor:["group-hover","active",'focus'],
-      backgroundPosition:["group-hover","active",'focus'],
-      borderWidth: ["group-hover","active",'focus'],
-      visibility: ["group-hover","active",'focus'],
+      scale:["group-hover","active","focus",'group-focus'],
+      ringOffsetWidth:["group-hover","active",'focus','group-focus'],
+      ringWidth: ["group-hover","active",'focus','group-focus'],
+      ringColor:["group-hover","active",'focus','group-focus'],
+      ringOffsetColor:["group-hover","active",'focus','group-focus'],
+      backgroundPosition:["group-hover","active",'focus','group-focus'],
+      borderWidth: ["group-hover","active",'focus','group-focus'],
+      visibility: ["group-hover","active",'focus','group-focus'],
       'spin-slow': 'spin 3s linear infinite'
     }
   },

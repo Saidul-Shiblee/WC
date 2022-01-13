@@ -22,7 +22,7 @@
                 <input id="email" class='w-auto h-10 border-0 p-2  focus:outline-none focus:ring-2 focus:ring-blue-800 group-focus:' type="email" placeholder="E-mail">   
              </div>
              <div class='flex  p-2 mt-6 '>
-                <span class="bg-white w-auto h-10 p-2 "><i class="fas fa-user "></i></span>
+                <span class="bg-white w-auto h-10 p-2 "><i class="fas fas fa-lock "></i></span>
                 <input id="password" class='w-auto h-10 border-0 p-2  focus:outline-none focus:ring-2 focus:ring-blue-800 group-focus:' type="password" placeholder="password">   
              </div>
              <div class='p-2 flex justify-center mt-4'>
@@ -41,47 +41,17 @@
         function signIn(){
             const eMail=document.querySelector('#email').value
             const password=document.querySelector('#password').value  
-     
             Users= JSON.parse(localStorage.getItem('Users'))
 
-
-            Users.filter((user)=>{
-                if (user.email=eMail && user.password==password ) {
-                    localStorage.setItem('UserID',JSON.stringify(eMail));
-                    window.location.href = "order.html";
-                }else{
+            if (Users.some(user=>user.email==eMail && user.password==password)) {
+                localStorage.setItem('UserID',JSON.stringify(eMail));
+                window.location.href = "order.html";
+            }else{
                     alert('wrong credential');
                 }
-            })
-            // if(Users.some((user)=>{return user.email==eMail && user.password==password })){
-            //     localStorage.setItem('UserID',JSON.stringify(eMail));
-            //     window.location.href = "order.html";
-            // }else{
-            //     alert('Wrong Credential')
-            // }
+            
         }  
             
-        //     if(Users.some((user)=>{return user.email==eMail && user.password==password })){
-        //         localStorage.setItem('UserID',JSON.stringify(eMail));
-        //         window.location.href = "order.html";
-        //     }else{
-        //         alert('Wrong Credential')
-        //     }
-        // }      
-        //     //     if (user.email==eMail) {
-        //     //         console.log(user);
-        //     //         if (user.password==password) {
-        //     //             localStorage.setItem('UserID',JSON.stringify(eMail));
-        //     //             window.location.href = "order.html"; 
-        //     //         }else{
-        //     //             alert('Wrong Credential')
-        //     //         }    
-        //     //    }else{
-        //     //        alert('No such User')
-        //     //    }
-        //     // })
-           
-        // }              
         
 
         
