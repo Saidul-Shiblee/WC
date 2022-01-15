@@ -7,11 +7,11 @@
     <link href="style.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     
-    <title>Wash & Clean </title>
+    <title>Sign In</title>
 </head>
 <body>
     <div class="flex items-center justify-center h-screen bg-cover" style="background-image: url(../assets/login.jpg)">
-        <form id='userForm' action="" class="bg-gray-600 border-0 rounded-lg py-6 px-10 shadow-2xl bg-opacity-90" onsubmit="return false" >
+        <form id='userForm' action="" class="bg-gray-600 border-0 rounded-lg p-20 shadow-2xl bg-opacity-90" onsubmit="return false" >
           <div class="flex flex-col items-center justify-center">  
             <div class="flex justify-center">
                 <h1 class=" text-white text-3xl font-bold">Member Login</h1>
@@ -31,9 +31,7 @@
                 <p class=" text-white">Not yet registered?, please click <a class="text-blue-900 underline" href="Signup.html"> here </a>  </p> 
             </div>
           </div> 
-        </form>
-
-        
+        </form>  
     </div>
 
 
@@ -45,10 +43,12 @@
             const eMail=document.querySelector('#email').value
             const password=document.querySelector('#password').value  
             Users= JSON.parse(localStorage.getItem('Users'))
-
             if (Users.some(user=>user.email==eMail && user.password==password)) {
+                User=Users.filter(user=>user.email== eMail)
+                if(User[0].role !=='member'){alert("You are not a member")}
+                else{
                 localStorage.setItem('UserID',JSON.stringify(eMail));
-                window.location.href = "orderstatus copy.html";
+                window.location.href = "orderstatus copy.html";}
             }else{
                     alert('wrong credential');
                 }

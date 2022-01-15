@@ -68,7 +68,7 @@
 
 function getOrderdetails(){
 
-    UserID= JSON.parse(localStorage.getItem('UserID'));
+    UserID= JSON.parse(localStorage.getItem('UserID'))
     if(!UserID){window.location.href = "Signin-admin.html"}
     Orders= JSON.parse(localStorage.getItem('Orders'))
     Users=JSON.parse(localStorage.getItem('Users'))
