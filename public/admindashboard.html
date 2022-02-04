@@ -5,58 +5,245 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="style.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
     <title>Order Details</title>
 </head>
-<body onload="getOrderdetails()"> 
+<body onload="getOrderdetails()"
+    class="bg-fixed bg-cover "
+    style="background-image: url(../assets/BG1.png);"> 
 
-<div class="flex w-full h-screen ">
-    <div class="flex flex-col w-1/6 bg-sky-50 h-screen ">
-            <ul class="flex flex-col gap-4 items-center pt-6">
-                <li class="flex grow-0 hover:bg-sky-600">
-                    Place Order
-                </li>
-                <li>
-                    Order Status
-                </li>
-               
-            </ul>
-    </div>
-    <div class="flex flex-col w-5/6 bg-gray-500  ">
-        <div class="flex flex-col ">
-            <div class="flex drop-shadow-md bg-white w-full p-2 mb-4 justify-center">
-                <h1 class="text-slate-800 text-3xl ">Hi <span id="user"></span> here is your order details</h1>
-            </div>
+<div id="main" class="flex relative w-full h-screen">
+    <div class="flex flex-col w-1/6 p-2 ml-2">
+        <div class="flex flex-col text-white bg-gray-900 opacity-90 -mt-2">
+          <div
+            class="flex p-4 space-x-3 items-center border-b border-white border-dotted"
+          >
+            <span
+              class="h-10 w-10 bg-contain bg-center"
+              style="background-image: url(../assets/wc-logo.png)"
+            >
+            </span>
+            <span class="text-base">Wash & Clean</span>
+          </div>
+          <div
+            class="flex p-1 space-x-3 items-center border-b border-white border-dotted"
+          >
+            <span
+              class="h-10 w-10 ml-2 bg-center bg-contain rounded-full"
+              style="background-image: url(../assets/avatar-2.jpg)"
+            >
+            </span>
+            <span class="text-base">Hi! <span id="user"></span> </span>
+          </div>
+
+          <div class="flex space-x-3 items-center bg-gray-400 text-slate-800">
+            <span
+              class="hover:bg-gray-400 cursor-default p-2 w-full hover:text-slate-800 hover:p-2"
+              ><i class="fab fa-algolia"></i> Order Status</span
+            >
+          </div>
+
         </div>
-        <div class="flex flex-col bg-zinc-50  p-12">
-            <div class="flex justify-around w-full p-2">
-                <div class="flex ">Order #</div>
-                <div class="flex"> Order Details</div>
-                <div class="flex">OPD</div>
-                <div class="flex">EDD</div>
-                <div class="flex">Status</div>
-                <div class="flex"></div>
+
+        <div class="flex flex-col text-white bg-gray-900 opacity-90 mt-2">
+          <div
+            class="flex p-2 space-x-3 items-center justify-center border-b border-white border-dotted"
+          >
+            <h1>Orders to confirm</h1>
+          </div>
+          <div class="flex h-auto p-2 justify-center">
+            <h1>You have no orders to confirm</h1>
+          </div>
+        </div>
+        <div class="flex flex-col text-white bg-gray-900 opacity-90 mt-2">
+          <div
+            class="flex p-4 space-x-3 items-center border-b border-white border-dotted"
+          >
+            <h1>Orders to receive</h1>
+          </div>
+          <div
+            class="flex p-1 space-x-3 items-center border-b border-white border-dotted"
+          ></div>
+        </div>
+        <div class="flex flex-col text-white bg-gray-900 opacity-90 mt-2">
+          <div
+            class="flex p-4 space-x-3 items-center border-b border-white border-dotted"
+          >
+            <h1>Orders in process</h1>
+          </div>
+          <div
+            class="flex p-1 space-x-3 items-center border-b border-white border-dotted"
+          ></div>
+        </div>
+        <div class="flex flex-col text-white bg-gray-900 opacity-90 mt-2">
+          <div
+            class="flex p-4 space-x-3 items-center border-b border-white border-dotted"
+          >
+            <h1>Orders to deliver</h1>
+          </div>
+          <div
+            class="flex p-1 space-x-3 items-center border-b border-white border-dotted"
+          ></div>
+        </div>
+    </div>
+    <div class="flex flex-col w-5/6 px-10 ">
+        <div
+          class="flex justify-between w-full p-2 mb-4 bg-gray-900 opacity-90"
+        >
+        <!--  -->
+          <div class="flex space-x-7">
+            <div class="flex p-1">
+              <span class="text-xl text-white"
+                ><i class="fas fa-igloo"></i
+              ></span>
+            </div>
+            <div class="flex p-1">
+              <span class="text-xl text-white"
+                ><i class="fas fa-file-signature"></i
+              ></span>
+            </div>
+            <div class="flex">
+              <span
+                class="text-xl bg-white border border-gray-900 rounded-l-md p-1"
+                ><i class="fab fa-searchengin"></i
+              ></span>
+              <input
+                type="text"
+                placeholder="Search"
+                class="bg-white border border-gray-900 rounded-r-md focus:outline-none focus:border-none focus:ring-gray-400 focus:ring-1 focus:ring-inset"
+              />
+            </div>
+          </div>
+          <div class="flex space-x-7">
+            <div class="flex">
+              <span class="text-xl text-white"
+                ><i class="fas fa-comments"></i
+              ></span>
+            </div>
+            <div class="flex">
+              <span class="text-xl text-white"
+                ><i class="far fa-bell"></i
+              ></span>
+            </div>
+            <div class="flex relative">
+              <span class="text-xl text-white" id="caret"
+                ><i class="fas fa-user-tie mr-2"></i
+                ><i class="fas fa-angle-down text-sm"></i
+              ></span>
+            </div>
+          </div>
+        </div>
+        <!--  -->
+        <!--  -->
+        <div
+          id="show"
+          class="absolute z-50 bg-white right-10 mt-14 drop-shadow-xl transform -translate-y-96 main"
+        >
+          <ul class="flex flex-col">
+            <li class="flex p-2 justify-center border-b">
+              <span>Hi! </span> <span id="user"></span>
+            </li>
+            <li
+              class="flex p-2 hover:bg-gray-400 cursor-default hover:w-full hover:text-slate-800"
+            >
+              <span class="text-lg mr-2"><i class="fas fa-cogs"></i></span>
+              <span>Settings</span>
+            </li>
+            <li
+              class="flex p-2 hover:bg-gray-400 cursor-default hover:w-full hover:text-slate-800"
+            >
+              <span class="text-lg mr-2"><i class="far fa-user"></i></span>
+              <span>Profile</span>
+            </li>
+            <li
+              onclick="signout()"
+              class="flex p-2 hover:bg-gray-400 cursor-default hover:w-full hover:text-slate-800"
+            >
+              <span class="text-lg mr-2"
+                ><i class="fas fa-sign-out-alt"></i
+              ></span>
+              <span>Logout</span>
+            </li>
+          </ul>
+        </div>
+        <!--  -->
+        <!--  -->
+        <div class="flex flex-col">
+            <div
+              class="flex justify-between bg-gray-900 bg-opacity-90 w-full p-2 text-white"
+            >
+              <div class="w-1/12 justify-center items-center"><p>Order #</p></div>   
+              <div class="w-2/5 justify-center items-center"><p>Order Details</p></div>       
+              <div class="w-2/12 justify-center items-center"><p>OPD</p></div>
+              <div class="w-2/12 justify-center items-center"><p>EDD</p></div>
+              <div class="w-1/5 justify-center items-center"><p>Status</p></div>
+              <div class="justify-center items-center"><p></p></div>
             </div>
             <div class="border-b-2 border-indigo-500"></div>
             <div id="demo" class="t_content"></div>
-        </div>
-        
-        <div class="modal fixed  ease-linear transition-all  duration-300 flex justify-around  update bg-white border-0 rounded-lg p-20 drop-shadow-2xl transform -translate-x-1/2 -translate-y-96 left-2/4 ">
-            <div><label for="">EDD</label>
-             <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  w-auto p-2.5" type="date" id= 'edd' value=""> 
+          </div>
+        <!--  -->
+
+        <!--  -->
+        <div id="order_Edit" class="modal z-40 flex-col w-3/4 h-auto absolute update bg-white border-0 rounded-lg drop-shadow-2xl left-1/2 transform invisible -translate-x-1/2 mt-16 ml-28 ">
+            <div
+            class="relative flex justify-end items-center border-b border-gray-700 p-2"
+            >
+                <div class="absolute flex justify-center items-center transform -translate-x-1/2 left-1/2">
+                <div class="p-2"><p>Update Order Status Order # <span id="orderNo"></span></p></div> 
+                </div>
+            <div class="flex justify-end items-center">
+                <div class="p-2"> <span id="closeModal" class="closeModal cursor-default" onclick='closeModal()'>X</span> </div>         
             </div>
-             <div>
-             <label for="">Status</label>
-             <select id="status" class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal
-                       text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300
-                       rounded transition ease-in-outm-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" >
-             </select>
-             </div>
-             <a href="" onclick='update()' class ="bg-blue-500 w-auto  border-0 rounded-md p-1 mr-2 text-white cursor-default">Update</a>
-         </div>
-         <div>
-             <p id="index" hidden></p>
-         </div>
+            
+            </div>
+            <div class="flex items-center justify-center space-x-8 my-16">
+                <div class ="flex items-center space-x-4">
+                    <div class ="flex items-center justify-center">
+                        <label for="">EDD:</label>
+                    </div>  
+                    <div class ="flex items-center justify-center">
+                        <input class="w-full px-3 py-1.5 text-base font-normal h-10
+                    text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300
+                        rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="date" id= 'edd' value=""> 
+                    </div>
+                </div>
+        
+                <div class ="flex items-center space-x-4">
+                    <div class ="flex items-center justify-center">
+                        <label for="">Status:</label>
+                    </div>  
+                    <div class ="flex items-center justify-center">
+                        <select id="status" class="w-full px-3 py-1.5 text-base font-normal h-10
+                            text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300
+                            rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" >
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class ="flex items-center justify-center space-x-6 mb-10">      
+                <div class="flex items-center justify-center p-2">
+                    <button id="placeOrder" class="p-1 border rounded-md drop-shadow-md bg-green-400" type="button" onclick='update()' >Update</button> 
+                </div>
+                <div class="flex items-center justify-center p-2">
+                    <button id="closeModal" class="p-1 border rounded-md drop-shadow-md bg-red-600" onclick='closeModal()'  type="button">Close</button> 
+                </div>
+            </div>
+            <div>
+                <p id="index" hidden></p>
+            </div>
+        </div>
+        <!--  -->
+        
+
     </div>
+    <div
+id="overlay"
+class="absolute left-0 top-0 w-full h-screen z-30 bg-black opacity-50 invisible"
+></div>
 </div>
       
   
@@ -67,15 +254,14 @@
 
 
 function getOrderdetails(){
-
-    UserID= JSON.parse(localStorage.getItem('UserID'))
-    if(!UserID){window.location.href = "Signin-admin.html"}
+    UserInfo= JSON.parse(localStorage.getItem('UserInfo'))
+    if(!UserInfo || UserInfo[0].role !=='admin'){window.location.href = "Signin.html"}
     Orders= JSON.parse(localStorage.getItem('Orders'))
     Users=JSON.parse(localStorage.getItem('Users'))
     t_content=document.querySelector(".t_content")
     user_name=document.querySelector("#user")
     Users.filter((user)=>{
-        if (UserID==user.email) {
+        if (UserInfo[0].UserID==user.email) {
            UserName=user.name 
            user_name.innerHTML=UserName
         }
@@ -87,17 +273,19 @@ function getOrderdetails(){
                 element.push(member+"->"+order.order_items[member])  
             }
             content+=
-                `<div class="flex justify-around  p-2 border-bottom border-dotted border-indigo-500 ">
-                <div class="  grow-1">${order.order_id}</div>   
-                <div class="  grow-0">${element.map((el)=>el).join(',')}</div>       
-                <div class=" grow-0">${order.Order_PD}</div>
-                <div class=" grow-1">${order.Order_EDD}</div>
-                <div class="  grow-0">${order.Order_status}</div>
+            `<div class="flex w-full justify-around items-center bg-gray-900 bg-opacity-90 text-white p-2 border-bottom border-dotted border-indigo-500 ">
+                <div class="w-1/12 justify-center items-center"><p> ${order.order_id}</p></div>   
+                <div class="w-2/5 justify-center items-center"><p>${element.map((el) => el).join(" , ")}</p> </div>       
+                <div class="w-2/12 justify-center items-center"><p>${order.Order_PD}</p> </div>
+                <div class="w-2/12 justify-center items-center"><p>${order.Order_EDD}</p> </div>
+                <div class="w-1/5 justify-center items-center"><p> ${order.Order_status}</p></div>
                 <div class="  grow-0">
-                    <p  onclick='edit(${index})' class ="bg-blue-500 w-auto  border-0 rounded-md p-1 mr-2 text-white cursor-default active:bg-blue-400">Edit</p>
-                    <p  class ="bg-red-700 w-auto  border-0 rounded-md p-1 text-white cursor-default">Delete</p>
+                    <p  onclick='edit(${index})' class =" w-auto  p-1 text-white cursor-default active:bg-blue-400"><span><i class="fas fa-edit"></i></span></p>
+                    
                 </div>
-                </div>` 
+            </div>`
+                
+    
     })
     t_content.innerHTML=content
 }
@@ -106,7 +294,7 @@ function edit(id){
     let edd=document.querySelector("#edd")
     let status=document.querySelector("#status")
     let ind=document.querySelector("#index")
-    let modal=document.querySelector('.modal')
+    let orderNo=document.querySelector("#orderNo")
     console.log(status.value);
     const Order_Status=['','Not Yet Confirmed','Order Received','In Progress','Ready for Delivery','Delivered']
     Orders= JSON.parse(localStorage.getItem('Orders'))
@@ -114,6 +302,7 @@ function edit(id){
         if (id==index) {
             edd.value= order.Order_EDD
             status.value= order.Order_status
+            orderNo.innerHTML=order.order_id
             ind.innerHTML=index
             console.log(status.value);
             let select=``
@@ -126,7 +315,13 @@ function edit(id){
              status.innerHTML=select   
            }
     })
-    modal.classList.remove('-translate-y-96');   
+    let order_form = document.querySelector("#order_Edit");
+    let overlay = document.querySelector("#overlay");
+    order_form.classList.remove("invisible");
+    order_form.classList.add("visible");
+    overlay.classList.remove("invisible");
+    overlay.classList.add("visible");  
+    
 }  
 
 function update(){
@@ -136,9 +331,9 @@ function update(){
     let ind=document.querySelector("#index").innerHTML;
     let edd=document.querySelector("#edd").value;
     let status=document.querySelector("#status").value;
-    let modal=document.querySelector('.modal')
     
-    order=Orders[ind];
+    
+    let order=Orders[ind];
     // console.log(order);
     let update_order={ 'order_id':order.order_id,
       'order_items':order.order_items,
@@ -149,9 +344,43 @@ function update(){
                      }
     Orders.splice(ind, 1, update_order);
     localStorage.setItem('Orders',JSON.stringify(Orders));
-    modal.classList.add('-translate-y-96'); 
+    let order_form = document.querySelector("#order_Edit");
+    let overlay = document.querySelector("#overlay");
+    order_form.classList.add("invisible");
+    order_form.classList.remove("visible");
+    overlay.classList.add("invisible");
+    overlay.classList.remove("visible"); 
+    location.reload();
+
 }
 
+    //Event Listner for user dropdown
+    document.querySelector("#caret").addEventListener("click", function (e) {
+      e.stopPropagation();
+      let show = document.querySelector("#show");
+      show.classList.toggle("-translate-y-96");
+    });
+
+    //EventListner to close user dropdown on click on anywhere of the page
+    document.querySelector("#main").addEventListener("click", function (e) {
+      let show = document.querySelector("#show");
+      show.classList.add("-translate-y-96");
+    });
+
+    function closeModal(){
+    let order_form = document.querySelector("#order_Edit");
+    let overlay = document.querySelector("#overlay");
+    order_form.classList.add("invisible");
+    order_form.classList.remove("visible");
+    overlay.classList.add("invisible");
+    overlay.classList.remove("visible"); 
+    }
+
+    //Signout Functions
+    function signout() {
+      localStorage.removeItem("UserInfo");
+      window.location.href = "Signin-admin.html";
+    }
 
 </script>
 </html>

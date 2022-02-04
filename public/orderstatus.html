@@ -1,185 +1,633 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="style.css" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
     <title>Order Details</title>
-</head>
-<body onload="getOrderdetails()"> 
-<div id='main' class="flex w-full h-screen  bg-center bg-fixed bg-cover bg-opacity-60 " style="background-image: url(../assets/BG.png); ">
-    <div class=" flex flex-col w-1/6 p-2 ml-2">
-        <div class="flex flex-col text-white  bg-gray-900 opacity-90 -mt-2  ">
-            <div class="flex p-4 space-x-3 items-center border-b border-white border-dotted">
-                <span class =" h-10 w-10  " style=" background-image: url(../assets/logo-new.svg);" >
-                </span> 
-                <span class="text-base">Wash & Clean</span>
-            </div>
-            <div class="flex p-1 space-x-3 items-center border-b border-white border-dotted">
-                <span class =" h-10 w-10 ml-2  bg-center bg-cover rounded-full" style=" background-image: url(../assets/avatar-1.png);" >
-                </span> 
-                <Span class="text-base">Hi! </Span> <span id="user"></span>
-            </div>
-            <div class="flex  space-x-3 items-center">
-             <span class="hover:bg-gray-400 cursor-default  p-2 w-full hover:text-slate-800 hover:p-2"><i class="fab fa-first-order-alt"></i> Place Order</span> 
-            </div>
-            <div class="flex  space-x-3 items-center">
-                <span class="hover:bg-gray-400 cursor-default  p-2 w-full hover:text-slate-800 hover:p-2"><i class="fab fa-algolia"></i> Order Status</span> 
-            </div>
+  </head>
+  <body
+    onload="getOrderdetails()"
+    class="bg-fixed bg-cover "
+    style="background-image: url(../assets/BG1.png);"
+  >
+    <div id="main" class="flex relative w-full h-screen">
+      <div class="flex flex-col w-1/6 p-2 ml-2">
+        <div class="flex flex-col text-white bg-gray-900 opacity-90 -mt-2">
+          <div
+            class="flex p-4 space-x-3 items-center border-b border-white border-dotted"
+          >
+            <span
+              class="h-10 w-10 bg-contain bg-center"
+              style="background-image: url(../assets/wc-logo.png)"
+            >
+            </span>
+            <span class="text-base">Wash & Clean</span>
+          </div>
+          <div
+            class="flex p-1 space-x-3 items-center border-b border-white border-dotted"
+          >
+            <span
+              class="h-10 w-10 ml-2 bg-center bg-contain rounded-full"
+              style="background-image: url(../assets/avatar-2.jpg)"
+            >
+            </span>
+            <span class="text-base">Hi! <span id="user"></span> </span>
+          </div>
+
+          <div class="flex space-x-3 items-center bg-gray-400 text-slate-800">
+            <span
+              class="hover:bg-gray-400 cursor-default p-2 w-full hover:text-slate-800 hover:p-2"
+              ><i class="fab fa-algolia"></i> Order Status</span
+            >
+          </div>
+          <div class="flex space-x-3 items-center">
+            <span
+              class="p-2 hover:bg-gray-400 cursor-default w-full hover:text-slate-800 hover:p-2"
+              id="place_order"
+              ><i class="fab fa-first-order-alt"></i> Place Order</span
+            >
+          </div>
         </div>
 
-        <div class="flex flex-col text-white  bg-gray-900 opacity-90 mt-2  ">
-            <div class="flex p-2 space-x-3 items-center justify-center border-b border-white border-dotted">
-               <h1>Orders to confirm</h1>
-            </div>
-            <div class="flex h-auto p-2  justify-center ">
-               <h1>You have no orders to confirm</h1>
-            </div>
-            
+        <div class="flex flex-col text-white bg-gray-900 opacity-90 mt-2">
+          <div
+            class="flex p-2 space-x-3 items-center justify-center border-b border-white border-dotted"
+          >
+            <h1>Orders to confirm</h1>
+          </div>
+          <div class="flex h-auto p-2 justify-center">
+            <h1>You have no orders to confirm</h1>
+          </div>
         </div>
-        <div class="flex flex-col text-white  bg-gray-900 opacity-90 mt-2  ">
-            <div class="flex p-4 space-x-3 items-center border-b border-white border-dotted">
-               <h1>Orders to receive</h1>
-            </div>
-            <div class="flex p-1 space-x-3 items-center border-b border-white border-dotted">
-               
-            </div>
-            
+        <div class="flex flex-col text-white bg-gray-900 opacity-90 mt-2">
+          <div
+            class="flex p-4 space-x-3 items-center border-b border-white border-dotted"
+          >
+            <h1>Orders to receive</h1>
+          </div>
+          <div
+            class="flex p-1 space-x-3 items-center border-b border-white border-dotted"
+          ></div>
         </div>
-        <div class="flex flex-col text-white  bg-gray-900 opacity-90 mt-2  ">
-            <div class="flex p-4 space-x-3 items-center border-b border-white border-dotted">
-               <h1>Orders in process</h1>
-            </div>
-            <div class="flex p-1 space-x-3 items-center border-b border-white border-dotted">
-               
-            </div>
-            
+        <div class="flex flex-col text-white bg-gray-900 opacity-90 mt-2">
+          <div
+            class="flex p-4 space-x-3 items-center border-b border-white border-dotted"
+          >
+            <h1>Orders in process</h1>
+          </div>
+          <div
+            class="flex p-1 space-x-3 items-center border-b border-white border-dotted"
+          ></div>
         </div>
-        <div class="flex flex-col text-white  bg-gray-900 opacity-90 mt-2  ">
-            <div class="flex p-4 space-x-3 items-center border-b border-white border-dotted">
-               <h1>Orders to deliver</h1>
-            </div>
-            <div class="flex p-1 space-x-3 items-center border-b border-white border-dotted">
-               
-            </div>
-            
+        <div class="flex flex-col text-white bg-gray-900 opacity-90 mt-2">
+          <div
+            class="flex p-4 space-x-3 items-center border-b border-white border-dotted"
+          >
+            <h1>Orders to deliver</h1>
+          </div>
+          <div
+            class="flex p-1 space-x-3 items-center border-b border-white border-dotted"
+          ></div>
         </div>
-    </div>
-    
-    <div class="flex flex-col w-5/6 px-10">
-            <div class="flex justify-between  w-full p-2 mb-4 bg-gray-900 opacity-90 ">
-                <div class="flex space-x-7 ">
-                    <div class="flex p-1">
-                        <span class=" text-xl text-white"><i class="fas fa-igloo"></i></span>
-                    </div>
-                    <div class="flex p-1">
-                        <span class=" text-xl text-white"><i class="fas fa-file-signature"></i></span>
-                    </div>
-                    <div class="flex ">
-                            <span class="text-xl  bg-white border border-gray-900 rounded-l-md p-1" ><i class="fab fa-searchengin"></i></span>
-                            <input type ='text' placeholder="Search" class="  
-                            bg-white border border-gray-900 rounded-r-md  
-                           focus:outline-none focus:border-none focus:ring-gray-400 focus:ring-1 focus:ring-inset ">     
-                    </div>
-                </div>
-                <div class="flex space-x-7 ">
-                    <div class="flex">
-                        <span class=" text-xl text-white"><i class="fas fa-comments"></i></span>
-                    </div>
-                    <div class="flex">
-                        <span class=" text-xl text-white"><i class="far fa-bell"></i></span>
-                    </div>
-                    <div class="flex relative">
-                        <span class=" text-xl text-white" id='caret'><i class="fas fa-user-tie mr-2" ></i><i    class="fas fa-angle-down text-sm "></i></span>                  
-                    </div>
-                </div>               
+      </div>
+
+      <div class="flex flex-col w-5/6 px-10">
+        <div
+          class="flex justify-between w-full p-2 mb-4 bg-gray-900 opacity-90"
+        >
+          <div class="flex space-x-7">
+            <div class="flex p-1">
+              <span class="text-xl text-white"
+                ><i class="fas fa-igloo"></i
+              ></span>
             </div>
-            <div id="show" class="absolute z-10 bg-white rounded-md p-4 right-10 mt-14 drop-shadow-xl transform -translate-y-96 main">
-                <ul class="flex flex-col space-y-4">
-                    <li class="flex justify-center border-b"> <Span>Hi! </Span><span> </span> <span id="user"></span></li>
-                    <li class="flex"> <span class=" text-lg mr-2 "><i class="fas fa-cogs"></i></span> <span>Settings</span></li>
-                    <li class="flex"> <span class=" text-lg mr-2 "><i class="far fa-user"></i></span> <span>Profile</span></li>
-                    <li class="flex"> <span class=" text-lg mr-2 "><i class="fas fa-sign-out-alt"></i></span> <span>Logout</span></li>
-                </ul>
+            <div class="flex p-1">
+              <span class="text-xl text-white"
+                ><i class="fas fa-file-signature"></i
+              ></span>
             </div>
+            <div class="flex">
+              <span
+                class="text-xl bg-white border border-gray-900 rounded-l-md p-1"
+                ><i class="fab fa-searchengin"></i
+              ></span>
+              <input
+                type="text"
+                placeholder="Search"
+                class="bg-white border border-gray-900 rounded-r-md focus:outline-none focus:border-none focus:ring-gray-400 focus:ring-1 focus:ring-inset"
+              />
+            </div>
+          </div>
+          <div class="flex space-x-7">
+            <div class="flex">
+              <span class="text-xl text-white"
+                ><i class="fas fa-comments"></i
+              ></span>
+            </div>
+            <div class="flex">
+              <span class="text-xl text-white"
+                ><i class="far fa-bell"></i
+              ></span>
+            </div>
+            <div class="flex relative">
+              <span class="text-xl text-white" id="caret"
+                ><i class="fas fa-user-tie mr-2"></i
+                ><i class="fas fa-angle-down text-sm"></i
+              ></span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="show"
+          class="absolute z-50 bg-white right-10 mt-14 drop-shadow-xl transform -translate-y-96 main"
+        >
+          <ul class="flex flex-col">
+            <li class="flex p-2 justify-center border-b">
+              <span>Hi! </span> <span id="user"></span>
+            </li>
+            <li
+              class="flex p-2 hover:bg-gray-400 cursor-default hover:w-full hover:text-slate-800"
+            >
+              <span class="text-lg mr-2"><i class="fas fa-cogs"></i></span>
+              <span>Settings</span>
+            </li>
+            <li
+              class="flex p-2 hover:bg-gray-400 cursor-default hover:w-full hover:text-slate-800"
+            >
+              <span class="text-lg mr-2"><i class="far fa-user"></i></span>
+              <span>Profile</span>
+            </li>
+            <li
+              onclick="signout()"
+              class="flex p-2 hover:bg-gray-400 cursor-default hover:w-full hover:text-slate-800"
+            >
+              <span class="text-lg mr-2"
+                ><i class="fas fa-sign-out-alt"></i
+              ></span>
+              <span>Logout</span>
+            </li>
+          </ul>
+        </div>
+
+
         <div class="flex flex-col">
-            <div class="flex justify-around bg-gray-900 bg-opacity-90  w-full p-2 text-white">
-                <div class="flex ">Order #</div>
-                <div class="flex"> Order Details</div>
-                <div class="flex">OPD</div>
-                <div class="flex">EDD</div>
-                <div class="flex">Status</div>
-               
+          <div
+            class="flex justify-between bg-gray-900 bg-opacity-90 w-full p-2 text-white"
+          >
+            <div class="w-1/12 justify-center items-center"><p>Order #</p></div>   
+            <div class="w-2/5 justify-center items-center"><p>Order Details</p></div>       
+            <div class="w-2/12 justify-center items-center"><p>OPD</p></div>
+            <div class="w-2/12 justify-center items-center"><p>EDD</p></div>
+            <div class="w-1/5 justify-center items-center"><p>Status</p></div>
+          </div>
+          <div class="border-b-2 border-indigo-500"></div>
+          <div id="demo" class="t_content"></div>
+        </div>
+      </div>
+    <!--  -->
+      <div
+        id="order_form"
+        class="modal z-40 flex-col w-3/4 h-auto absolute update bg-white border-0 rounded-lg drop-shadow-2xl left-1/2 transform invisible -translate-x-1/2 mt-16 ml-28"
+      >
+        <div
+          class="relative flex justify-end items-center border-b border-gray-700 p-2"
+        >
+            <div class="absolute flex justify-center items-center transform -translate-x-1/2 left-1/2">
+            <div class="p-2"><h1>Hi <span id="user"></span> Wanna Place an Order!</h1></div> 
             </div>
-            <div class="border-b-2 border-indigo-500"></div>
-            <div id="demo" class="t_content"></div>
-        </div>     
+          <div class="flex justify-end items-center">
+            <div class="p-2"> <span class="closeModal cursor-default">X</span> </div>         
+          </div>
+          
+        </div>
+
+        <div class="flex flex-col w-auto justify-between p-4">
+          <div class="flex items-center justify-center"> 
+            <div class="flex items-center">
+              <label class="py-1.5 px-3" for="item">Select Item: </label>
+
+              <select
+                onchange="getPrice()"
+                id="item"
+                class="form-select appearance-none w-50 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                aria-label="Default select example"
+              >
+                <option selected value="0">Please Select One</option>
+                <option value="Shirt">Shirt</option>
+                <option value="Pant">Pant</option>
+                <option value="Panjabi">Panjabi</option>
+              </select>
+            </div>
+            <div class="flex items-center">
+              <label for="name" class="py-1.5 px-3">Quantity:</label>
+              <input
+                id="quantity"
+                min="1"
+                class="w-20 h-auto py-1.5 px-3 border rounded focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                type="number"
+                placeholder=""
+              />
+            </div>
+
+            <div class="flex items-center">
+              <label class="py-1.5 px-3" for="item">Select Operation: </label>
+              <select
+                onchange="getPrice()"
+                id="operation"
+                class="form-select appearance-none w-50 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                aria-label="Default select example"
+              >
+                <option selected value="0">Please Select One</option>
+                <option value="Wash">Wash</option>
+                <option value="Iron">Iron</option>
+              </select>
+            </div>
+            <div class="flex py-1.5 px-3 items-center">
+              <button
+                class="bg-green-400 p-1 border rounded-md drop-shadow-md"
+                onclick="addToList()"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+          <div class="flex justify-around items-center">
+            <p class="py-1.5 px-3">
+              Item Price : <span class="unitPrice" id="unitPrice"> </span>
+            </p>
+          </div>
+        </div>
+        
+           
+        <div class="list flex flex-col justify-center items-center">
+        </div>
+
+        
+      </div>
+
+      <div
+        id="overlay"
+        class="absolute left-0 top-0 w-full h-screen z-30 bg-black opacity-50 invisible"
+      ></div>
     </div>
-</div>
-      
-  
-    
-</body>
+  </body>
 
-<script>
-
-
-function getOrderdetails(){
-    UserID= JSON.parse(localStorage.getItem('UserID'))
-    Orders= JSON.parse(localStorage.getItem('Orders'))
-    Users=JSON.parse(localStorage.getItem('Users'))
-    t_content=document.querySelector(".t_content")
-    user_name=document.querySelector("#user")
-    Users.filter((user)=>{
-        if (UserID==user.email) {
-           UserName=user.name 
-           user_name.innerHTML=UserName
+  <script>
+    //Function To get Order Details which will fire onload
+    function getOrderdetails() {
+      UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
+      if (!UserInfo || UserInfo[0].role !== "member") {
+        window.location.href = "Signin-admin.html";
+      }
+      Orders = JSON.parse(localStorage.getItem("Orders"));
+      Users = JSON.parse(localStorage.getItem("Users"));
+      t_content = document.querySelector(".t_content");
+      user_name = document.querySelectorAll("#user");
+      Users.filter((user) => {
+        if (UserInfo[0].UserID == user.email) {
+          let userName = user.name;
+          user_name.forEach((un) => {
+            un.innerHTML = userName.toUpperCase();
+          });
         }
-    })
-    let content=""
-    Orders.filter((order,index)=>{
-
-        if(UserID==order.user_id){
-            let element=[]
-            for (let member in order.order_items) {
-                element.push(member+"->"+order.order_items[member])  
-            }
-            content+=
-            `<div class="flex justify-around bg-gray-900 bg-opacity-90 text-white p-2 border-bottom border-dotted border-indigo-500 ">
-                <div class="  grow-1">${order.order_id}</div>   
-                <div class="  grow-0">${element.map((el)=>el).join(',')}</div>       
-                <div class=" grow-0">${order.Order_PD}</div>
-                <div class=" grow-1">${order.Order_EDD}</div>
-                <div class="  grow-0">${order.Order_status}</div>
-            </div>` 
+      });
+      let content = "";
+      Orders.filter((order, index) => {
+        if (UserInfo[0].UserID == order.user_id) {
+          let element = [];
+          for (let member in order.order_items) {
+            console.log(member);
+            element.push(member + "->" + order.order_items[member]);
+          }
+          content += `<div class="flex w-full justify-around items-center bg-gray-900 bg-opacity-90 text-white p-2 border-bottom border-dotted border-indigo-500 ">
+                <div class="w-1/12 justify-center items-center"><p> ${order.order_id}</p></div>   
+                <div class="w-2/5 justify-center items-center"><p>${element.map((el) => el).join(" , ")}</p> </div>       
+                <div class="w-2/12 justify-center items-center"><p>${order.Order_PD}</p> </div>
+                <div class="w-2/12 justify-center items-center"><p>${order.Order_EDD}</p> </div>
+                <div class="w-1/5 justify-center items-center"><p> ${order.Order_status}</p></div>
+            </div>`;
         }
-    })
-    t_content.innerHTML=content
-}
- 
-// function show(event){
-//     let show = document.querySelector("#show")
-//     event.stopPropagation();
-//     console.log('propagation stopped');
-//     show.classList.toggle("-translate-y-96");
-//     e.stopPropagation();
+      });
+      t_content.innerHTML = content;
+    }
+    //End of getOrderDetails
 
-// }
+    //Event Listner for user dropdown
+    document.querySelector("#caret").addEventListener("click", function (e) {
+      e.stopPropagation();
+      let show = document.querySelector("#show");
+      show.classList.toggle("-translate-y-96");
+    });
+    //
+    //EventListner to close user dropdown on click on anywhere of the page
+    document.querySelector("#main").addEventListener("click", function (e) {
+      let show = document.querySelector("#show");
+      show.classList.add("-translate-y-96");
+    });
+    //
+    //Eventlistner to show order form
+    document
+      .querySelector("#place_order")
+      .addEventListener("click", function (e) {
+        e.stopPropagation();
+        let order_form = document.querySelector("#order_form");
+        let overlay = document.querySelector("#overlay");
+        order_form.classList.remove("invisible");
+        order_form.classList.add("visible");
+        overlay.classList.remove("invisible");
+        overlay.classList.add("visible");
+      });
+    //
+    //Eventlistner to close order form
+    document
+      .querySelector(".closeModal")
+      .addEventListener("click", function (e) {
+        let order_form = document.querySelector("#order_form");
+        let overlay = document.querySelector("#overlay");
+        order_form.classList.add("invisible");
+        order_form.classList.remove("visible");
+        overlay.classList.remove("visible");
+        overlay.classList.add("invisible");
+        document.querySelector("#item").value = 0;
+        document.querySelector("#operation").value = 0;
+        document.querySelector("#quantity").value = 0;
+        document.querySelector(".unitPrice").innerHTML = "";
+      });
 
-document.querySelector('#caret').addEventListener('click', function(e){
-    console.log('div shown');
-  e.stopPropagation()
-  let show = document.querySelector("#show")
-  show.classList.toggle("-translate-y-96");
-  console.log('div shown');
-});
+    //Global Variable
+    let table = [];
+    //
+    //Function to add item to list
+    function addToList() {
+      let item =
+        document.querySelector("#item").value +
+        "_" +
+        document.querySelector("#operation").value;
+      let quantity = document.querySelector("#quantity").value;
+      let unitPrice = document.querySelector("#unitPrice").innerHTML;
+      let list = document.querySelector(".list");
+      if (
+        document.querySelector("#item").value == 0 ||
+        document.querySelector("#operation").value == 0 ||
+        quantity == 0
+      ) {
+        alert("Please fill all the fields");
+      } else {
+        if (table.length == 0) {
+          table.push({
+            item: item,
+            quantity: quantity,
+            unitPrice: unitPrice,
+          });
+        } else {
+          if (table.some((el) => el.item == item)) {
+            alert("already in the list");
+          } else {
+            table.push({
+              item: item,
+              quantity: quantity,
+              unitPrice: unitPrice,
+            });
+          }
+        }
+      }
+      let htmlCode =`<div class="flex border-b items-center justify-around w-full mb-2">
+                        <div id='cart_item' class=" flex items-center justify-center w-1/4">
+                            <p>Item</p>
+                        </div>
+                        <div id='cart_qty' class="flex items-center justify-center w-1/4">
+                            <p>Quantity</p>
+                        </div>
+                        <div id='cart_itemPrice' class="flex items-center justify-center w-1/4">
+                            <p>Item Price</p>
+                        </div>
+                        <div id='cart_itemTotalPrice' class="flex items-center justify-center w-1/4">
+                            <p>Total Price</p>
+                        </div>
+                        <div class="flex items-center justify-center w-1/4"></div>
+                    </div>
+      `;
 
+      table.forEach((td, ind) => {
+        htmlCode += `
+        <div class='flex mb-4 items-center justify-around w-full '>
+            <div class="flex items-center justify-center w-1/4">
+                <p id="order_item" class='item  text-grey-darkest'>${td.item}</p>
+            </div>
+            <div class="flex items-center justify-center w-1/4">
+                <input id="order_quantity"class='w-20 h-auto  px-3 border rounded focus:text-gray-700 focus:bg-white 
+                focus:border-blue-600 focus:outline-none' min='0' onchange='updatePrice(this,${ind})' value="${td.quantity}" type="number">
+            </div>
+            <div class="flex items-center justify-center w-1/4">
+                <p id="price" class=' text-grey-darkest'>${td.unitPrice}</p>
+            </div>
+            <div class="flex items-center justify-center w-1/4">    
+                <p id="totalPrice" class=' text-grey-darkest'>${td.unitPrice * td.quantity}</p>
+            </div>
+            <div class="flex items-center justify-center w-1/4"> 
+                <p onclick='deleteItem(${ind})' class=' '>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+                </p>
+            </div>                        
+        </div>
+        `;
+      });
+      let conditionalButton = `<div class ="flex items-center justify-center space-x-6">      
+                                <div class="flex items-center justify-center p-2">
+                                    <button id="placeOrder" class="p-1 border rounded-md drop-shadow-md bg-green-400" type="button" onclick="placeOrder()" >Place Order</button> 
+                                </div>
+                                <div class="flex items-center justify-center p-2">
+                                    <button id="closeModal" class="p-1 border rounded-md drop-shadow-md bg-red-600"  type="button">Close</button> 
+                                </div>
+                               </div>`;
+      htmlCode += table.length != 0 ? conditionalButton : " ";
+      list.innerHTML = htmlCode;
+      console.log(table);
+      //Event Listner for close UserMoal
+      document
+        .getElementById("closeModal")
+        .addEventListener("click", function () {
+          let order_form = document.querySelector("#order_form");
+          let overlay = document.querySelector("#overlay");
+          order_form.classList.add("invisible");
+          order_form.classList.remove("visible");
+          overlay.classList.remove("visible");
+          overlay.classList.add("invisible");
+          document.querySelector("#item").value = 0;
+          document.querySelector("#operation").value = 0;
+          document.querySelector("#quantity").value = 0;
+          document.querySelector(".unitPrice").innerHTML = "";
+          console.log(table);
+          table = [];
+          list.innerHTML = [];
+        });
+      //End of Evnetlistenr
+    }
+    //function to edit item on list
+    function updatePrice(ins, ind) {
+      let total_price = ins.parentElement.nextElementSibling.nextElementSibling.children[0];
+      let unit_price =ins.parentElement.nextElementSibling.children[0].innerHTML;
+      total_price.innerHTML = ins.value * unit_price;
+      if (ins.value == 0) {
+        deleteItem(ind);
+      }
+    }
 
-document.querySelector('#main').addEventListener('click', function(e){
-  let show = document.querySelector("#show")
-  show.classList.add("-translate-y-96");
-});
-</script>
+    //End of add to list Function
+
+    //Function to get the price
+    function getPrice() {
+      const price = {
+        Shirt_Wash: 30,
+        Pant_Wash: 31,
+        Panjabi_Wash: 32,
+        Shirt_Iron: 15,
+        Pant_Iron: 15,
+        Panjabi_Iron: 15,
+      };
+      if (document.querySelector("#item").value) {
+        document.querySelector("#operation").removeAttribute("disabled");
+      } else {
+        document.querySelector("#operation").setAttribute("disabled", "");
+      }
+      if (
+        document.querySelector("#item").value !== "" &&
+        document.querySelector("#operation").value !== ""
+      ) {
+        let item =
+          document.querySelector("#item").value +
+          "_" +
+          document.querySelector("#operation").value;
+        if (price.hasOwnProperty(item)) {
+          document.querySelector(".unitPrice").innerHTML = price[item];
+        }
+      }
+    }
+
+    //Funtion to delete an Itme form the list
+
+    function deleteItem(id) {
+      let list = document.querySelector(".list");
+      table.splice(id, 1);
+      console.log(table);
+      let htmlCode =`<div class="flex border-b items-center justify-around w-full mb-2">
+                        <div id='cart_item' class=" flex items-center justify-center w-1/4">
+                            <p>Item</p>
+                        </div>
+                        <div id='cart_qty' class="flex items-center justify-center w-1/4">
+                            <p>Quantity</p>
+                        </div>
+                        <div id='cart_itemPrice' class="flex items-center justify-center w-1/4">
+                            <p>Item Price</p>
+                        </div>
+                        <div id='cart_itemTotalPrice' class="flex items-center justify-center w-1/4">
+                            <p>Total Price</p>
+                        </div>
+                        <div class="flex items-center justify-center w-1/4"></div>
+                    </div>
+      `;
+      table.forEach((td, ind) => {
+        htmlCode += `
+        <div class='flex mb-4 items-center justify-around w-full '>
+            <div class="flex items-center justify-center w-1/4">
+                <p id="order_item" class='item  text-grey-darkest'>${td.item}</p>
+            </div>
+            <div class="flex items-center justify-center w-1/4">
+                <input id="order_quantity"class='w-20 h-auto  px-3 border rounded focus:text-gray-700 focus:bg-white 
+                focus:border-blue-600 focus:outline-none' min='0' onchange='updatePrice(this,${ind})' value="${td.quantity}" type="number">
+            </div>
+            <div class="flex items-center justify-center w-1/4">
+                <p id="price" class=' text-grey-darkest'>${td.unitPrice}</p>
+            </div>
+            <div class="flex items-center justify-center w-1/4">    
+                <p id="totalPrice" class=' text-grey-darkest'>${td.unitPrice * td.quantity}</p>
+            </div>
+            <div class="flex items-center justify-center w-1/4"> 
+                <p onclick='deleteItem(${ind})' class=' '>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+                </p>
+            </div>                        
+        </div>
+        `;
+      });
+      let conditionalButton = `<div class ="flex items-center justify-center space-x-6">      
+                                <div class="flex items-center justify-center p-2">
+                                    <button id="placeOrder" class="p-1 border rounded-md drop-shadow-md bg-green-400" type="button" onclick="placeOrder()" >Place Order</button> 
+                                </div>
+                                <div class="flex items-center justify-center p-2">
+                                    <button id="closeModal" class="p-1 border rounded-md drop-shadow-md bg-red-600"  type="button">Close</button> 
+                                </div>
+                               </div>`;
+      htmlCode += table.length != 0 ? conditionalButton : " ";
+      list.innerHTML = htmlCode;
+    }
+    //End of Delete Item Function
+
+    //Function to place an Order
+    function placeOrder() {
+      let date = new Date();
+      let OPD = date.toISOString().slice(0, 10);
+      let items = document.querySelectorAll("#order_item");
+      let quantities = document.querySelectorAll("#order_quantity");
+      let Order_items = [];
+      let Order_quantity = [];
+      items.forEach((item) => {
+        let x = item.innerHTML;
+        Order_items.push(x);
+      });
+      quantities.forEach((quantity) => {
+        let y = quantity.value;
+        Order_quantity.push(y);
+      });
+      let result = {};
+      Order_items.forEach((item, i) => (result[item] = Order_quantity[i]));
+      UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
+
+      let UserID = UserInfo[0].UserID;
+
+      let Orders = JSON.parse(localStorage.getItem("Orders"))
+        ? JSON.parse(localStorage.getItem("Orders"))
+        : [];
+
+      let order_id = Orders.length
+        ? Number(Orders[Orders.length - 1].order_id) + 1
+        : 1;
+      Orders.push({
+        order_id: "00" + order_id,
+        order_items: result,
+        user_id: UserID,
+        Order_status: "Not Yet Confirmed",
+        Order_PD: OPD,
+        Order_EDD: "",
+      });
+
+      localStorage.setItem("Orders", JSON.stringify(Orders));
+      document.querySelector("#item").value = 0;
+      document.querySelector("#operation").value = 0;
+      document.querySelector("#quantity").value = 0;
+      document.querySelector(".unitPrice").innerHTML = "";
+      location.reload();
+    }
+    //End of Place order function
+    //Signout Functions
+    function signout() {
+      localStorage.removeItem("UserInfo");
+      window.location.href = "Signin.html";
+    }
+  </script>
 </html>

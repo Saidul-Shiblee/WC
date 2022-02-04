@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -52,14 +55,14 @@
 @layer utilities {
   .pfitem-card-dimension {
     height: 290px;
-    width:  360px
+    width:  340px
   }
 }
 
 @layer utilities {
   .pfitem-inner-card-dimension {
     height: 260px;
-    width:  330px
+    width:  310px
   }
 }
 
@@ -78,5 +81,51 @@
 @layer utilities {
   .w-own{
    width: 22.91%;
+  }
+}
+@layer utilities {
+  .acievement-card-dimension {
+    height: 122px;
+    width:  235px
+  }
+}
+
+
+@layer utilities {
+  .hero-image-dimension {
+    height: 620px;
+  
+  }
+}
+
+@layer utilities {
+  .why-us-div-dimension {
+    width:  476px;
+  }
+}
+
+@layer utilities {
+  .get-price-button-dimension {
+    width:  380px;
+    height: 52px;
+  }
+}
+@layer utilities {
+  .testimonial-dimension {
+    width:  832px;
+    height: 100%;
+  }
+}
+
+@layer utilities {
+  .testimonial-div-dimension {
+    height: 480px;
+  }
+}
+
+@layer utilities {
+  .why-us-dimension {
+    height: 620px;
+  
   }
 }
